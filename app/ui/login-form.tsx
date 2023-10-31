@@ -10,12 +10,18 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
+import { signIn } from 'next-auth/react';
 
 export default function LoginForm() {
   const [code, action] = useFormState(authenticate, undefined);
-  const { pending } = useFormStatus();
 
   return (
+    <div>
+    <button className="mt-4 w-full" onClick={() => signIn("github")}>
+      Github Sign in
+      <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
+    </button>
+
     <form action={action} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
@@ -75,6 +81,7 @@ export default function LoginForm() {
         </div>
       </div>
     </form>
+  </div>
   );
 }
 
