@@ -76,7 +76,7 @@ export async function deleteInvoice(id: string) {
   }
 }
 
-export async function authenticate(
+export async function authenticateWithCredentials(
   prevState: string | undefined,
   formData: FormData,
 ) {
@@ -88,4 +88,8 @@ export async function authenticate(
     }
     throw error;
   }
+}
+
+export async function authenticateWithGithub() {
+  await signIn('github');
 }

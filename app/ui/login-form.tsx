@@ -9,15 +9,14 @@ import {
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
-import { authenticate } from '@/app/lib/actions';
-import { signIn } from 'next-auth/react';
+import { authenticateWithCredentials, authenticateWithGithub } from '@/app/lib/actions';
 
 export default function LoginForm() {
-  const [code, action] = useFormState(authenticate, undefined);
+  const [code, action] = useFormState(authenticateWithCredentials, undefined);
 
   return (
     <div>
-    <button className="mt-4 w-full" onClick={() => signIn("github")}>
+    <button className="mt-4 w-full" onClick={() => authenticateWithGithub()}>
       Github Sign in
       <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
     </button>
